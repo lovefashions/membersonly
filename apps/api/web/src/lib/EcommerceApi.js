@@ -37,16 +37,61 @@ export const EcommerceApi = {
         },
         body: JSON.stringify({ items, successUrl, cancelUrl }),
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.error || 'Checkout process failed');
       }
-      
+
       return await response.json();
     } catch (error) {
       console.error('Error creating checkout:', error);
       return { error: error.message || 'An unexpected error occurred during checkout' };
     }
-  }
+  },
+
+  fetchSubscriptionStatus: async (token) => {
+    try {
+      const response = await fetch('/api/subscriptions/status', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Authentication required');
+        }
+        throw new Error('Failed to fetch subscription status');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching subscription status:', error);
+      return { error: error.message || 'An unexpected error occurred' };
+    }
+  },
+
+  fetchUserTier: async (token) => {
+    try {
+      const response = await fetch('/api/subscriptions/tier', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Authentication required');
+        }
+        throw new Error('Failed to fetch user tier');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching user tier:', error);
+      return { error: error.message || 'An unexpected error occurred' };
+    }
+  },
 };
+

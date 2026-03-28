@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "./pocketbase serve --http=0.0.0.0:8090 --encryptionEnv=PB_ENCRYPTION_KEY --hooksWatch=false",
+    "dev": "PB_ENCRYPTION_KEY=${PB_ENCRYPTION_KEY:-12345678901234567890123456789012} PB_SUPERUSER_EMAIL=${PB_SUPERUSER_EMAIL:-admin@example.com} PB_SUPERUSER_PASSWORD=${PB_SUPERUSER_PASSWORD:-1234567890} ./pocketbase serve --http=0.0.0.0:8090 --encryptionEnv=PB_ENCRYPTION_KEY --hooksWatch=false",
     "start": "./pocketbase serve --http=0.0.0.0:8090 --encryptionEnv=PB_ENCRYPTION_KEY --dir=/data --migrationsDir=./pb_migrations --hooksDir=./pb_hooks --hooksWatch=false",
     "migrations:up": "./pocketbase horizons migrations:up --encryptionEnv=PB_ENCRYPTION_KEY --dir=/data --migrationsDir=./pb_migrations --hooksDir=./pb_hooks --hooksWatch=false",
     "migrations:revert": "./pocketbase horizons migrations:revert --encryptionEnv=PB_ENCRYPTION_KEY --dir=/data --migrationsDir=./pb_migrations --hooksDir=./pb_hooks --hooksWatch=false",

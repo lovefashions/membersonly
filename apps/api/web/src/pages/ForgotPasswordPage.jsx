@@ -59,7 +59,9 @@ const ForgotPasswordPage = () => {
                 {success && (
                   <Alert className="mb-6 bg-green-50/50 border-green-200 text-green-800 rounded-xl">
                     <CheckCircle2 className="h-4 w-4 text-green-600" />
-                    <AlertDescription>Reset link dispatched. Please check your inbox.</AlertDescription>
+                    <AlertDescription>
+                      Reset link dispatched. Please check your inbox.
+                    </AlertDescription>
                   </Alert>
                 )}
 
@@ -73,7 +75,9 @@ const ForgotPasswordPage = () => {
                 {!success && (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground/80 font-medium">Email Address</Label>
+                      <Label htmlFor="email" className="text-foreground/80 font-medium">
+                        Email Address
+                      </Label>
                       <Input
                         id="email"
                         name="email"
@@ -97,7 +101,10 @@ const ForgotPasswordPage = () => {
                 )}
 
                 <div className="mt-8 text-center">
-                  <Link to="/login" className="text-sm text-primary hover:text-primary/80 font-medium inline-flex items-center transition-colors">
+                  <Link
+                    to="/login"
+                    className="text-sm text-primary hover:text-primary/80 font-medium inline-flex items-center transition-colors"
+                  >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Return to Sign In
                   </Link>

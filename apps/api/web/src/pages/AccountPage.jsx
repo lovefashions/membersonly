@@ -29,10 +29,9 @@ const AccountPage = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const userProfile = await pb.collection('profiles').getFirstListItem(
-          `user_id="${currentUser.id}"`,
-          { $autoCancel: false }
-        );
+        const userProfile = await pb
+          .collection('profiles')
+          .getFirstListItem(`user_id="${currentUser.id}"`, { $autoCancel: false });
         setProfile(userProfile);
         setEmailForm({ email: currentUser.email });
       } catch (error) {
@@ -96,7 +95,10 @@ const AccountPage = () => {
     <>
       <Helmet>
         <title>Account Settings | Apple Jucy</title>
-        <meta name="description" content="Manage your Apple Jucy account settings and profile information." />
+        <meta
+          name="description"
+          content="Manage your Apple Jucy account settings and profile information."
+        />
       </Helmet>
 
       <div className="min-h-screen bg-background pt-24 pb-16">
@@ -105,8 +107,12 @@ const AccountPage = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <div className="mb-10">
-              <h1 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-2">Account Settings</h1>
-              <p className="text-foreground/60 font-light">Manage your personal information and security preferences.</p>
+              <h1 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-2">
+                Account Settings
+              </h1>
+              <p className="text-foreground/60 font-light">
+                Manage your personal information and security preferences.
+              </p>
             </div>
 
             {/* Profile Information */}
@@ -120,15 +126,23 @@ const AccountPage = () => {
               <CardContent className="p-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <Label className="text-xs uppercase tracking-wider text-foreground/50 mb-1 block">Name</Label>
+                    <Label className="text-xs uppercase tracking-wider text-foreground/50 mb-1 block">
+                      Name
+                    </Label>
                     <p className="text-base font-medium text-foreground">{currentUser?.name}</p>
                   </div>
                   <div>
-                    <Label className="text-xs uppercase tracking-wider text-foreground/50 mb-1 block">Member Since</Label>
+                    <Label className="text-xs uppercase tracking-wider text-foreground/50 mb-1 block">
+                      Member Since
+                    </Label>
                     <p className="text-base font-medium text-foreground">
-                      {profile?.created_at ? new Date(profile.created_at).toLocaleDateString('en-US', {
-                        year: 'numeric', month: 'long', day: 'numeric',
-                      }) : 'N/A'}
+                      {profile?.created_at
+                        ? new Date(profile.created_at).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })
+                        : 'N/A'}
                     </p>
                   </div>
                 </div>
@@ -160,7 +174,9 @@ const AccountPage = () => {
 
                 <form onSubmit={handleEmailUpdate} className="space-y-5">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-foreground/80 font-medium">New Email Address</Label>
+                    <Label htmlFor="email" className="text-foreground/80 font-medium">
+                      New Email Address
+                    </Label>
                     <Input
                       id="email"
                       type="email"
@@ -206,35 +222,49 @@ const AccountPage = () => {
 
                 <form onSubmit={handlePasswordUpdate} className="space-y-5">
                   <div className="space-y-2">
-                    <Label htmlFor="oldPassword" className="text-foreground/80 font-medium">Current Password</Label>
+                    <Label htmlFor="oldPassword" className="text-foreground/80 font-medium">
+                      Current Password
+                    </Label>
                     <Input
                       id="oldPassword"
                       type="password"
                       value={passwordForm.oldPassword}
-                      onChange={(e) => setPasswordForm({ ...passwordForm, oldPassword: e.target.value })}
+                      onChange={(e) =>
+                        setPasswordForm({ ...passwordForm, oldPassword: e.target.value })
+                      }
                       className="bg-background border-border focus-visible:ring-primary rounded-lg h-12"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="newPassword" className="text-foreground/80 font-medium">New Password</Label>
+                    <Label htmlFor="newPassword" className="text-foreground/80 font-medium">
+                      New Password
+                    </Label>
                     <Input
                       id="newPassword"
                       type="password"
                       value={passwordForm.newPassword}
-                      onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
+                      onChange={(e) =>
+                        setPasswordForm({ ...passwordForm, newPassword: e.target.value })
+                      }
                       className="bg-background border-border focus-visible:ring-primary rounded-lg h-12"
                       required
                     />
-                    <p className="text-xs text-foreground/50 font-light">Must be at least 8 characters</p>
+                    <p className="text-xs text-foreground/50 font-light">
+                      Must be at least 8 characters
+                    </p>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="confirmPassword" className="text-foreground/80 font-medium">Confirm New Password</Label>
+                    <Label htmlFor="confirmPassword" className="text-foreground/80 font-medium">
+                      Confirm New Password
+                    </Label>
                     <Input
                       id="confirmPassword"
                       type="password"
                       value={passwordForm.confirmPassword}
-                      onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })}
+                      onChange={(e) =>
+                        setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })
+                      }
                       className="bg-background border-border focus-visible:ring-primary rounded-lg h-12"
                       required
                     />

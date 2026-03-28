@@ -18,7 +18,7 @@ const ShoppingCart = ({ isCartOpen, setIsCartOpen }) => {
 
     setIsCheckingOut(true);
     try {
-      const items = cartItems.map(item => ({
+      const items = cartItems.map((item) => ({
         variant_id: item.variant.id,
         quantity: item.quantity,
       }));
@@ -57,11 +57,16 @@ const ShoppingCart = ({ isCartOpen, setIsCartOpen }) => {
           >
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
               <h2 className="text-2xl font-bold text-gray-900">Shopping Cart</h2>
-              <Button onClick={() => setIsCartOpen(false)} variant="ghost" size="icon" className="text-gray-500 hover:bg-gray-100 rounded-full">
+              <Button
+                onClick={() => setIsCartOpen(false)}
+                variant="ghost"
+                size="icon"
+                className="text-gray-500 hover:bg-gray-100 rounded-full"
+              >
                 <X className="w-5 h-5" />
               </Button>
             </div>
-            
+
             <div className="flex-grow p-6 overflow-y-auto space-y-4">
               {cartItems.length === 0 ? (
                 <div className="text-center text-gray-400 h-full flex flex-col items-center justify-center">
@@ -69,11 +74,20 @@ const ShoppingCart = ({ isCartOpen, setIsCartOpen }) => {
                   <p>Your cart is empty.</p>
                 </div>
               ) : (
-                cartItems.map(item => (
-                  <div key={item.variant.id} className="flex items-center gap-4 bg-white border border-gray-100 p-3 rounded-xl shadow-sm">
-                    <img src={item.product.image} alt={item.product.title} className="w-20 h-20 object-cover rounded-lg bg-gray-50" />
+                cartItems.map((item) => (
+                  <div
+                    key={item.variant.id}
+                    className="flex items-center gap-4 bg-white border border-gray-100 p-3 rounded-xl shadow-sm"
+                  >
+                    <img
+                      src={item.product.image}
+                      alt={item.product.title}
+                      className="w-20 h-20 object-cover rounded-lg bg-gray-50"
+                    />
                     <div className="flex-grow">
-                      <h3 className="font-semibold text-gray-900 line-clamp-1">{item.product.title}</h3>
+                      <h3 className="font-semibold text-gray-900 line-clamp-1">
+                        {item.product.title}
+                      </h3>
                       {item.variant.title && item.variant.title !== 'Default Title' && (
                         <p className="text-sm text-gray-500">{item.variant.title}</p>
                       )}
@@ -83,11 +97,28 @@ const ShoppingCart = ({ isCartOpen, setIsCartOpen }) => {
                     </div>
                     <div className="flex flex-col items-end gap-2">
                       <div className="flex items-center border border-gray-200 rounded-lg h-8">
-                        <button onClick={() => updateQuantity(item.variant.id, Math.max(1, item.quantity - 1))} className="px-2 text-gray-500 hover:text-orange-600">-</button>
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.variant.id, Math.max(1, item.quantity - 1))
+                          }
+                          className="px-2 text-gray-500 hover:text-orange-600"
+                        >
+                          -
+                        </button>
                         <span className="px-2 text-sm font-medium">{item.quantity}</span>
-                        <button onClick={() => updateQuantity(item.variant.id, item.quantity + 1)} className="px-2 text-gray-500 hover:text-orange-600">+</button>
+                        <button
+                          onClick={() => updateQuantity(item.variant.id, item.quantity + 1)}
+                          className="px-2 text-gray-500 hover:text-orange-600"
+                        >
+                          +
+                        </button>
                       </div>
-                      <button onClick={() => removeFromCart(item.variant.id)} className="text-red-500 hover:text-red-600 text-xs font-medium">Remove</button>
+                      <button
+                        onClick={() => removeFromCart(item.variant.id)}
+                        className="text-red-500 hover:text-red-600 text-xs font-medium"
+                      >
+                        Remove
+                      </button>
                     </div>
                   </div>
                 ))
@@ -100,13 +131,15 @@ const ShoppingCart = ({ isCartOpen, setIsCartOpen }) => {
                   <span className="text-lg font-medium">Total</span>
                   <span className="text-2xl font-bold text-orange-600">{getCartTotal()}</span>
                 </div>
-                <Button 
-                  onClick={handleCheckout} 
+                <Button
+                  onClick={handleCheckout}
                   disabled={isCheckingOut}
                   className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-6 text-lg shadow-lg shadow-orange-500/20 transition-all"
                 >
                   {isCheckingOut ? (
-                    <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Processing...</>
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" /> Processing...
+                    </>
                   ) : (
                     'Proceed to Checkout'
                   )}

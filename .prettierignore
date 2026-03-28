@@ -1,0 +1,9 @@
+node_modules
+dist
+apps/api/pocketbase/pb_data
+apps/api/pocketbase/pocketbase
+apps/api/pocketbase/pocketbase.zip
+*.lock
+**/package-lock.json
+**/pnpm-lock.yaml
+**/yarn.lock

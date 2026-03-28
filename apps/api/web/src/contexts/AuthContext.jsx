@@ -42,12 +42,15 @@ export const AuthProvider = ({ children }) => {
       });
 
       // Create profile for the user with default tier 'fan' and status 'active'
-      await pb.collection('profiles').create({
-        user_id: user.id,
-        email: email,
-        tier: 'fan',
-        status: 'active',
-      }, { $autoCancel: false });
+      await pb.collection('profiles').create(
+        {
+          user_id: user.id,
+          email: email,
+          tier: 'fan',
+          status: 'active',
+        },
+        { $autoCancel: false }
+      );
 
       // Auto-login after signup
       const authData = await pb.collection('users').authWithPassword(email, password);
@@ -80,27 +83,87 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateEmail = async (newEmail) => {
-    const updated = await pb.collection('users').update(currentUser.id, {
-      email: newEmail,
-    }, { $autoCancel: false });
+    const updated = await pb.collection('users').update(
+      currentUser.id,
+      {
+        email: newEmail,
+      },
+      { $autoCancel: false }
+    );
     setCurrentUser(updated);
 
     // Also update profile email
-    const profile = await pb.collection('profiles').getFirstListItem(
-      `user_id="${currentUser.id}"`,
+    const profile = await pb
+      .collection('profiles')
+      .getFirstListItem(`user_id="${currentUser.id}"`, { $autoCancel: false });
+    await pb.collection('profiles').update(
+      profile.id,
+      {
+        email: newEmail,
+      },
       { $autoCancel: false }
     );
-    await pb.collection('profiles').update(profile.id, {
-      email: newEmail,
-    }, { $autoCancel: false });
   };
 
   const updatePassword = async (oldPassword, newPassword) => {
-    await pb.collection('users').update(currentUser.id, {
-      oldPassword,
-      password: newPassword,
-      passwordConfirm: newPassword,
-    }, { $autoCancel: false });
+    await pb.collection('users').update(
+      currentUser.id,
+      {
+        oldPassword,
+        password: newPassword,
+        passwordConfirm: newPassword,
+      },
+      { $autoCancel: false }
+    );
+  };
+
+  const googleAuth = async () => {
+    try {
+      // Use PocketBase's built-in OAuth2 authentication
+      // This will redirect to Google login and callback to the app
+      const authData = await pb.collection('users').authWithOAuth2({
+        provider: 'google',
+      });
+
+      setCurrentUser(authData.record);
+
+      // Create or update profile for the user
+      try {
+        const existingProfile = await pb
+          .collection('profiles')
+          .getFirstListItem(`user_id="${authData.record.id}"`, { $autoCancel: false });
+        
+        // Update existing profile with email if needed
+        if (existingProfile.email !== authData.record.email) {
+          await pb.collection('profiles').update(
+            existingProfile.id,
+            {
+              email: authData.record.email,
+            },
+            { $autoCancel: false }
+          );
+        }
+      } catch (error) {
+        // Profile doesn't exist, create one
+        if (error.status === 404) {
+          await pb.collection('profiles').create(
+            {
+              user_id: authData.record.id,
+              email: authData.record.email,
+              tier: 'fan',
+              status: 'active',
+            },
+            { $autoCancel: false }
+          );
+        } else {
+          throw error;
+        }
+      }
+
+      return authData;
+    } catch (error) {
+      throw error;
+    }
   };
 
   const value = {
@@ -109,6 +172,7 @@ export const AuthProvider = ({ children }) => {
     signup,
     login,
     logout,
+    googleAuth,
     requestPasswordReset,
     confirmPasswordReset,
     updateEmail,

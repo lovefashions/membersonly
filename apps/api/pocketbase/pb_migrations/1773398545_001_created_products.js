@@ -144,6 +144,24 @@ migrate((app) => {
                 "presentable": false,
                 "system": false,
                 "type": "autodate"
+          },
+          {
+                "hidden": false,
+                "i0d": "file1234567890",
+                "name": "downloadFile",
+                "presentable": false,
+                "primaryKey": false,
+                "required": false,
+                "system": false,
+                "type": "file",
+                "maxSelect": 1,
+                "maxSize": 20971520,
+                "mimeTypes": [
+                      "application/pdf",
+                      "application/zip",
+                      "application/octet-stream"
+                ],
+                "thumbs": []
           }
     ],
     "id": "pbc_8485956877",

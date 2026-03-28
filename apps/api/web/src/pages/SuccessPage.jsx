@@ -24,9 +24,10 @@ const SuccessPage = () => {
             Thank You for Your Order!
           </h1>
           <p className="text-lg text-gray-600 mb-8 max-w-md">
-            Your payment was successful and your order is being processed. We'll send you an email confirmation shortly.
+            Your payment was successful and your order is being processed. We'll send you an email
+            confirmation shortly.
           </p>
-          
+
           {orderId && (
             <div className="bg-white border border-gray-200 rounded-xl p-6 mb-8 shadow-sm">
               <p className="text-sm text-gray-500 mb-1">Order Reference</p>

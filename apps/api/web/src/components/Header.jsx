@@ -42,53 +42,56 @@ const Header = () => {
 
   const NavLinks = ({ mobile = false }) => (
     <div className={`flex ${mobile ? 'flex-col space-y-6' : 'items-center space-x-8'}`}>
-      <a 
-        href="#home" 
+      <a
+        href="#home"
         onClick={(e) => handleNavClick(e, '#home')}
         className="text-sm font-medium tracking-wide text-foreground/80 hover:text-primary transition-colors"
       >
         Home
       </a>
-      <a 
-        href="#about" 
+      <a
+        href="#about"
         onClick={(e) => handleNavClick(e, '#about')}
         className="text-sm font-medium tracking-wide text-foreground/80 hover:text-primary transition-colors"
       >
         About
       </a>
-      <a 
-        href="#membership" 
+      <a
+        href="#membership"
         onClick={(e) => handleNavClick(e, '#membership')}
         className="text-sm font-medium tracking-wide text-foreground/80 hover:text-primary transition-colors"
       >
         Membership
       </a>
-      <a 
-        href="#faq" 
+      <a
+        href="#faq"
         onClick={(e) => handleNavClick(e, '#faq')}
         className="text-sm font-medium tracking-wide text-foreground/80 hover:text-primary transition-colors"
       >
         FAQ
       </a>
-      <Link 
-        to="/products" 
+      <Link
+        to="/products"
         onClick={() => setMobileMenuOpen(false)}
         className="text-sm font-medium tracking-wide text-foreground/80 hover:text-primary transition-colors"
       >
         Shop
       </Link>
-      
+
       {currentUser ? (
         <>
-          <Link 
-            to="/dashboard" 
+          <Link
+            to="/dashboard"
             onClick={() => setMobileMenuOpen(false)}
             className="text-sm font-medium tracking-wide text-foreground/80 hover:text-primary transition-colors"
           >
             Dashboard
           </Link>
-          <button 
-            onClick={() => { logout(); setMobileMenuOpen(false); }}
+          <button
+            onClick={() => {
+              logout();
+              setMobileMenuOpen(false);
+            }}
             className={`text-sm font-medium tracking-wide text-foreground/80 hover:text-destructive transition-colors ${mobile ? 'text-left' : ''}`}
           >
             Logout
@@ -96,7 +99,10 @@ const Header = () => {
         </>
       ) : (
         <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-          <Button variant="outline" className="rounded-full px-6 border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto">
+          <Button
+            variant="outline"
+            className="rounded-full px-6 border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto"
+          >
             Sign In
           </Button>
         </Link>
@@ -106,25 +112,23 @@ const Header = () => {
 
   return (
     <>
-      <header 
+      <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled ? 'bg-background/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
         }`}
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 z-50">
-            <span className="text-2xl font-bold tracking-tight text-foreground">
-              Apple Jucy
-            </span>
+            <span className="text-2xl font-bold tracking-tight text-foreground">Apple Jucy</span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center">
             <NavLinks />
           </nav>
 
           <div className="flex items-center gap-4 z-50">
-            <button 
-              onClick={() => setIsCartOpen(true)} 
+            <button
+              onClick={() => setIsCartOpen(true)}
               className="relative p-2 text-foreground/80 hover:text-primary transition-colors"
               aria-label="Open cart"
             >
@@ -138,11 +142,18 @@ const Header = () => {
 
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon" className="text-foreground/80 hover:text-primary">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-foreground/80 hover:text-primary"
+                >
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background border-l-border pt-16">
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px] bg-background border-l-border pt-16"
+              >
                 <NavLinks mobile />
               </SheetContent>
             </Sheet>

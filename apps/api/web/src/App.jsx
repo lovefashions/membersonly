@@ -36,7 +36,7 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<PasswordResetPage />} />
             <Route path="/support" element={<SupportPage />} />
-            
+
             {/* E-commerce Routes */}
             <Route path="/products" element={<ProductsList />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
@@ -44,49 +44,57 @@ function App() {
             <Route path="/success" element={<SuccessPage />} />
 
             {/* Protected Routes */}
-            <Route 
-              path="/dashboard" 
+            <Route
+              path="/dashboard"
               element={
                 <ProtectedRoute>
                   <DashboardPage />
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/account" 
+            <Route
+              path="/account"
               element={
                 <ProtectedRoute>
                   <AccountPage />
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/upgrade" 
+            <Route
+              path="/upgrade"
               element={
                 <ProtectedRoute>
                   <UpgradePage />
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/admin" 
+            <Route
+              path="/admin"
               element={
                 <ProtectedRoute requireAdmin>
                   <AdminPage />
                 </ProtectedRoute>
-              } 
+              }
             />
 
             {/* Catch-all 404 */}
-            <Route path="*" element={
-              <div className="min-h-screen flex flex-col items-center justify-center bg-background text-center px-6">
-                <h1 className="text-6xl font-light text-foreground mb-4 tracking-tight">404</h1>
-                <p className="text-xl text-foreground/60 font-light mb-8">The page you are looking for cannot be found.</p>
-                <a href="/" className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors shadow-md">
-                  Return Home
-                </a>
-              </div>
-            } />
+            <Route
+              path="*"
+              element={
+                <div className="min-h-screen flex flex-col items-center justify-center bg-background text-center px-6">
+                  <h1 className="text-6xl font-light text-foreground mb-4 tracking-tight">404</h1>
+                  <p className="text-xl text-foreground/60 font-light mb-8">
+                    The page you are looking for cannot be found.
+                  </p>
+                  <a
+                    href="/"
+                    className="px-8 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors shadow-md"
+                  >
+                    Return Home
+                  </a>
+                </div>
+              }
+            />
           </Routes>
           <Toaster position="top-center" />
         </Router>

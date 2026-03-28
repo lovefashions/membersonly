@@ -98,7 +98,9 @@ const PasswordResetPage = () => {
                 {!success && (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-2">
-                      <Label htmlFor="password" className="text-foreground/80 font-medium">New Password</Label>
+                      <Label htmlFor="password" className="text-foreground/80 font-medium">
+                        New Password
+                      </Label>
                       <Input
                         id="password"
                         name="password"
@@ -109,11 +111,15 @@ const PasswordResetPage = () => {
                         placeholder="••••••••"
                         required
                       />
-                      <p className="text-xs text-foreground/50 font-light mt-1">Must be at least 8 characters</p>
+                      <p className="text-xs text-foreground/50 font-light mt-1">
+                        Must be at least 8 characters
+                      </p>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="confirmPassword" className="text-foreground/80 font-medium">Confirm Password</Label>
+                      <Label htmlFor="confirmPassword" className="text-foreground/80 font-medium">
+                        Confirm Password
+                      </Label>
                       <Input
                         id="confirmPassword"
                         name="confirmPassword"
@@ -137,7 +143,10 @@ const PasswordResetPage = () => {
                 )}
 
                 <div className="mt-8 text-center">
-                  <Link to="/login" className="text-sm text-primary hover:text-primary/80 font-medium transition-colors">
+                  <Link
+                    to="/login"
+                    className="text-sm text-primary hover:text-primary/80 font-medium transition-colors"
+                  >
                     Return to Sign In
                   </Link>
                 </div>

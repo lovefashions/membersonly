@@ -15,16 +15,16 @@ const ShoppingCartPage = () => {
 
   const handleCheckout = async () => {
     if (cartItems.length === 0) return;
-    
+
     setIsCheckingOut(true);
-    
+
     try {
       const successUrl = `${window.location.origin}/success`;
       const cancelUrl = `${window.location.origin}/cart`;
-      
-      const checkoutItems = cartItems.map(item => ({
+
+      const checkoutItems = cartItems.map((item) => ({
         variant_id: item.variant.id,
-        quantity: item.quantity
+        quantity: item.quantity,
       }));
 
       const { url } = await initializeCheckout({ items: checkoutItems, successUrl, cancelUrl });
@@ -45,9 +45,7 @@ const ShoppingCartPage = () => {
         <Header />
 
         <main className="container mx-auto px-4 py-12 max-w-5xl">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">
-            Shopping Cart
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">Shopping Cart</h1>
 
           {cartItems.length === 0 ? (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center flex flex-col items-center">
@@ -56,7 +54,8 @@ const ShoppingCartPage = () => {
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
               <p className="text-gray-500 mb-8 max-w-md">
-                Looks like you haven't added any items to your cart yet. Discover our premium products and start shopping!
+                Looks like you haven't added any items to your cart yet. Discover our premium
+                products and start shopping!
               </p>
               <Link to="/products">
                 <Button className="bg-orange-500 hover:bg-orange-600 h-12 px-8 text-base">
@@ -73,18 +72,26 @@ const ShoppingCartPage = () => {
                     <CardContent className="p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-6">
                       <div className="w-24 h-24 bg-gray-50 rounded-xl overflow-hidden flex-shrink-0 border border-gray-100">
                         {item.product.image ? (
-                          <img src={item.product.image} alt={item.product.title} className="w-full h-full object-cover" />
+                          <img
+                            src={item.product.image}
+                            alt={item.product.title}
+                            className="w-full h-full object-cover"
+                          />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
                             <ShoppingBag className="w-8 h-8 text-gray-300" />
                           </div>
                         )}
                       </div>
-                      
+
                       <div className="flex-1 text-center sm:text-left">
-                        <h3 className="text-lg font-bold text-gray-900 line-clamp-1">{item.product.title}</h3>
+                        <h3 className="text-lg font-bold text-gray-900 line-clamp-1">
+                          {item.product.title}
+                        </h3>
                         {item.variant.title && item.variant.title !== 'Default Title' && (
-                          <p className="text-sm text-gray-500 mt-1">Variant: {item.variant.title}</p>
+                          <p className="text-sm text-gray-500 mt-1">
+                            Variant: {item.variant.title}
+                          </p>
                         )}
                         <div className="text-orange-600 font-semibold mt-2">
                           {item.variant.sale_price_formatted || item.variant.price_formatted}
@@ -93,8 +100,10 @@ const ShoppingCartPage = () => {
 
                       <div className="flex items-center gap-4">
                         <div className="flex items-center border border-gray-200 rounded-lg h-10">
-                          <button 
-                            onClick={() => updateQuantity(item.variant.id, Math.max(1, item.quantity - 1))}
+                          <button
+                            onClick={() =>
+                              updateQuantity(item.variant.id, Math.max(1, item.quantity - 1))
+                            }
                             className="px-3 h-full text-gray-500 hover:text-orange-600 transition-colors"
                           >
                             -
@@ -102,15 +111,15 @@ const ShoppingCartPage = () => {
                           <span className="w-8 text-center font-medium text-sm">
                             {item.quantity}
                           </span>
-                          <button 
+                          <button
                             onClick={() => updateQuantity(item.variant.id, item.quantity + 1)}
                             className="px-3 h-full text-gray-500 hover:text-orange-600 transition-colors"
                           >
                             +
                           </button>
                         </div>
-                        
-                        <button 
+
+                        <button
                           onClick={() => removeFromCart(item.variant.id)}
                           className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                           aria-label="Remove item"
@@ -128,7 +137,7 @@ const ShoppingCartPage = () => {
                 <Card className="border-gray-100 shadow-sm sticky top-24">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h3>
-                    
+
                     <div className="space-y-4 mb-6">
                       <div className="flex justify-between text-gray-600">
                         <span>Subtotal</span>
@@ -140,13 +149,11 @@ const ShoppingCartPage = () => {
                       </div>
                       <div className="border-t border-gray-100 pt-4 flex justify-between items-center">
                         <span className="text-lg font-bold text-gray-900">Total</span>
-                        <span className="text-2xl font-bold text-orange-600">
-                          {getCartTotal()}
-                        </span>
+                        <span className="text-2xl font-bold text-orange-600">{getCartTotal()}</span>
                       </div>
                     </div>
 
-                    <Button 
+                    <Button
                       onClick={handleCheckout}
                       disabled={isCheckingOut}
                       className="w-full h-14 text-lg font-semibold bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/20 transition-all"
@@ -163,9 +170,12 @@ const ShoppingCartPage = () => {
                         </>
                       )}
                     </Button>
-                    
+
                     <div className="mt-4 text-center">
-                      <Link to="/products" className="text-sm text-gray-500 hover:text-orange-600 transition-colors">
+                      <Link
+                        to="/products"
+                        className="text-sm text-gray-500 hover:text-orange-600 transition-colors"
+                      >
                         Continue Shopping
                       </Link>
                     </div>

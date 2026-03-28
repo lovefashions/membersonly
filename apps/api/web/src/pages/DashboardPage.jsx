@@ -17,10 +17,9 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const userProfile = await pb.collection('profiles').getFirstListItem(
-          `user_id="${currentUser.id}"`,
-          { $autoCancel: false }
-        );
+        const userProfile = await pb
+          .collection('profiles')
+          .getFirstListItem(`user_id="${currentUser.id}"`, { $autoCancel: false });
         setProfile(userProfile);
       } catch (error) {
         console.error('Failed to fetch profile:', error);
@@ -37,10 +36,7 @@ const DashboardPage = () => {
   const getTierPerks = (tier) => {
     const normalizedTier = tier?.toLowerCase() || 'fan';
     const perks = {
-      fan: [
-        'Access to community',
-        'Monthly newsletter',
-      ],
+      fan: ['Access to community', 'Monthly newsletter'],
       vip: [
         'Access to community',
         'Monthly newsletter',
@@ -106,7 +102,9 @@ const DashboardPage = () => {
                 <CardContent className="p-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                      <p className="text-sm text-foreground/50 uppercase tracking-wider mb-1">Current Tier</p>
+                      <p className="text-sm text-foreground/50 uppercase tracking-wider mb-1">
+                        Current Tier
+                      </p>
                       <div className="flex items-center gap-3">
                         <span className="text-3xl font-light capitalize">{currentTier}</span>
                         <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none rounded-full px-3">
@@ -114,12 +112,14 @@ const DashboardPage = () => {
                         </Badge>
                       </div>
                       <p className="text-sm text-foreground/60 mt-2 font-light">
-                        Member since {new Date(profile?.created_at || Date.now()).toLocaleDateString('en-US', { 
-                          year: 'numeric', month: 'long'
+                        Member since{' '}
+                        {new Date(profile?.created_at || Date.now()).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
                         })}
                       </p>
                     </div>
-                    
+
                     {normalizedTier !== 'elite' && (
                       <Link to="/upgrade">
                         <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90 shadow-md">
@@ -140,13 +140,18 @@ const DashboardPage = () => {
                 </CardHeader>
                 <CardContent className="p-6 flex flex-col justify-between h-[calc(100%-65px)]">
                   <div>
-                    <p className="text-sm text-foreground/50 uppercase tracking-wider mb-1">Email</p>
+                    <p className="text-sm text-foreground/50 uppercase tracking-wider mb-1">
+                      Email
+                    </p>
                     <p className="text-foreground font-light truncate" title={currentUser?.email}>
                       {currentUser?.email}
                     </p>
                   </div>
                   <Link to="/account" className="mt-6 inline-block">
-                    <Button variant="outline" className="w-full rounded-full border-border hover:bg-secondary">
+                    <Button
+                      variant="outline"
+                      className="w-full rounded-full border-border hover:bg-secondary"
+                    >
                       Manage Account
                     </Button>
                   </Link>
@@ -157,7 +162,9 @@ const DashboardPage = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-card border-border/50 shadow-md rounded-2xl">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-xl font-medium text-foreground">Your Privileges</CardTitle>
+                  <CardTitle className="text-xl font-medium text-foreground">
+                    Your Privileges
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-4">
@@ -177,11 +184,14 @@ const DashboardPage = () => {
                     <Shield className="w-32 h-32 text-primary" />
                   </div>
                   <CardHeader className="pb-2 relative z-10">
-                    <CardTitle className="text-xl font-medium text-foreground">Unlock the Elite Experience</CardTitle>
+                    <CardTitle className="text-xl font-medium text-foreground">
+                      Unlock the Elite Experience
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="relative z-10">
                     <p className="text-foreground/70 font-light mb-6 leading-relaxed">
-                      Elevate your membership to access our most exclusive content, priority support channels, and VIP-only events reserved for our top tier members.
+                      Elevate your membership to access our most exclusive content, priority support
+                      channels, and VIP-only events reserved for our top tier members.
                     </p>
                     <Link to="/upgrade">
                       <Button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg group">

@@ -2,7 +2,12 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '@/components/ui/accordion';
 import { Mail, MessageCircle } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 
@@ -10,35 +15,46 @@ const SupportPage = () => {
   const faqs = [
     {
       question: 'What are the different membership tiers?',
-      answer: 'We offer three membership tiers: Fan Club ($30/mo) with access to basic content and community, VIP Lounge ($45/mo) which includes all Fan perks plus exclusive discounts and VIP events, and Elite Lounge ($55/mo) with all VIP perks plus priority support and exclusive experiences.',
+      answer:
+        'We offer three membership tiers: Fan Club ($30/mo) with access to basic content and community, VIP Lounge ($45/mo) which includes all Fan perks plus exclusive discounts and VIP events, and Elite Lounge ($55/mo) with all VIP perks plus priority support and exclusive experiences.',
     },
     {
       question: 'How do I upgrade my membership?',
       answer: (
         <>
-          You can upgrade your membership anytime by visiting the <Link to="/upgrade" className="text-primary hover:underline font-medium">Upgrade page</Link> from your dashboard. Simply select your desired tier and complete the payment through our secure checkout. Your account will be upgraded immediately.
+          You can upgrade your membership anytime by visiting the{' '}
+          <Link to="/upgrade" className="text-primary hover:underline font-medium">
+            Upgrade page
+          </Link>{' '}
+          from your dashboard. Simply select your desired tier and complete the payment through our
+          secure checkout. Your account will be upgraded immediately.
         </>
       ),
     },
     {
       question: 'Can I cancel my membership?',
-      answer: 'Yes, you can cancel your membership at any time. Simply contact our support team at support@applejucy.com and we will process your cancellation. You will retain access to your current tier until the end of your billing period.',
+      answer:
+        'Yes, you can cancel your membership at any time. Simply contact our support team at support@applejucy.com and we will process your cancellation. You will retain access to your current tier until the end of your billing period.',
     },
     {
       question: 'How does billing work?',
-      answer: 'All memberships are billed monthly through our secure payment processor. You will receive an email receipt for each payment. Your membership will automatically renew each month unless you cancel.',
+      answer:
+        'All memberships are billed monthly through our secure payment processor. You will receive an email receipt for each payment. Your membership will automatically renew each month unless you cancel.',
     },
     {
       question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards and PayPal through our secure checkout. All transactions are secure and encrypted.',
+      answer:
+        'We accept all major credit cards and PayPal through our secure checkout. All transactions are secure and encrypted.',
     },
     {
       question: 'Do you offer refunds?',
-      answer: 'We offer a 7-day money-back guarantee for new members. If you are not satisfied with your membership within the first 7 days, contact support@applejucy.com for a full refund.',
+      answer:
+        'We offer a 7-day money-back guarantee for new members. If you are not satisfied with your membership within the first 7 days, contact support@applejucy.com for a full refund.',
     },
     {
       question: 'How do I access exclusive content?',
-      answer: 'Once you upgrade to VIP or Elite tier, exclusive content will be available in your dashboard. You will also receive notifications when new content is added to the collection.',
+      answer:
+        'Once you upgrade to VIP or Elite tier, exclusive content will be available in your dashboard. You will also receive notifications when new content is added to the collection.',
     },
   ];
 
@@ -46,7 +62,10 @@ const SupportPage = () => {
     <>
       <Helmet>
         <title>Support & Concierge | Apple Jucy</title>
-        <meta name="description" content="Get assistance with your Apple Jucy membership. Browse FAQs or contact our concierge team." />
+        <meta
+          name="description"
+          content="Get assistance with your Apple Jucy membership. Browse FAQs or contact our concierge team."
+        />
       </Helmet>
 
       <div className="min-h-screen bg-background pt-24 pb-16">
@@ -55,9 +74,12 @@ const SupportPage = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-light tracking-tight text-foreground mb-4">Concierge & Support</h1>
+              <h1 className="text-4xl md:text-5xl font-light tracking-tight text-foreground mb-4">
+                Concierge & Support
+              </h1>
               <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">
-                We are dedicated to ensuring your experience is flawless. Find answers below or reach out to our team.
+                We are dedicated to ensuring your experience is flawless. Find answers below or
+                reach out to our team.
               </p>
             </div>
 
@@ -98,12 +120,13 @@ const SupportPage = () => {
                   <p className="text-foreground/70 font-light">
                     Require personalized assistance? Our concierge team is at your service.
                   </p>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="bg-secondary/30 p-6 rounded-xl border border-border/50">
                       <h3 className="font-medium text-foreground mb-2">Email Concierge</h3>
                       <p className="text-foreground/60 font-light text-sm mb-4">
-                        We aim to respond to all inquiries within 24 hours. Elite members receive priority routing.
+                        We aim to respond to all inquiries within 24 hours. Elite members receive
+                        priority routing.
                       </p>
                       <a
                         href="mailto:support@applejucy.com"

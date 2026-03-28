@@ -1,0 +1,17 @@
+node_modules
+
+# Environment secrets — never commit these
+.env
+
+# PocketBase runtime data
+apps/api/pocketbase/pb_data/data.db
+apps/api/pocketbase/pb_data/data.db-shm
+apps/api/pocketbase/pb_data/data.db-wal
+apps/api/pocketbase/pb_data/auxiliary.db
+apps/api/pocketbase/pb_data/auxiliary.db-shm
+apps/api/pocketbase/pb_data/auxiliary.db-wal
+apps/api/pocketbase/pb_data/storage/
+apps/api/pocketbase/pb_data/logs/
+
+# Built frontend output
+dist/

@@ -2,9 +2,11 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
+import prettier from 'eslint-config-prettier';
 
 export default [
 	{ ignores: ['node_modules/**', 'dist/**', 'build/**', 'vite.config.js'] },
+	prettier,
 	{
 		files: ['**/*.js', '**/*.jsx'],
 		plugins: { react, 'react-hooks': reactHooks, import: importPlugin },
