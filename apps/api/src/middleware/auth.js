@@ -1,5 +1,5 @@
 import logger from '../utils/logger.js';
-import { pb } from '../utils/pocketbase.js';
+import pb from '../utils/pocketbase.js';
 
 /**
  * Authentication middleware

@@ -127,93 +127,17 @@ const UpgradePage = () => {
         tiers[tierIndex].price = `$${plan.price_monthly}`;
       }
     });
-  }, [plans]);  const handleSubscribe = async (planSlug) => {
-    if (!currentUser) {
-      navigate('/login');
-      return;
-    }
-
-    try {
-      setSubscribingTo(planSlug);
-      setError(null);
-
-      const response = await apiServerClient.post('/api/billing/create-subscription', {
-        plan_slug: planSlug,
-      });
-
-      if (response.data.approval_url) {
-        // Redirect to PayPal for approval
-        window.location.href = response.data.approval_url;
-      } else {
-        setError('Unable to process subscription. Please try again.');
-      }
-    } catch (err) {
-      console.error('Subscription error:', err);
-      setError(err.response?.data?.error || 'Failed to create subscription');
-    } finally {
-      setSubscribingTo(null);
-    }
-  };
-
-  const tiers = [
-    {
-      name: 'fan',
-      displayName: 'Fan Club',
-      subtitle: 'Insider / Backstage Pass',
-      price: '$30',
-      period: '/mo',
-      features: [
-        { name: 'Early looks at new content', included: true },
-        { name: 'Behind-the-scenes', included: true },
-        { name: 'Members-only posts & updates', included: true },
-        { name: 'Exclusive discounts', included: false },
-        { name: 'Community access', included: true },
-      ],
-    },
-    {
-      name: 'vip',
-      displayName: 'VIP Lounge',
-      subtitle: 'Premium Access',
-      price: '$45',
-      period: '/mo',
-      featured: true,
-      features: [
-        { name: 'Access to community', included: true },
-        { name: 'Monthly newsletter', included: true },
-        { name: 'Early access to new content', included: true },
-        { name: 'Exclusive discounts', included: true },
-        { name: 'Access with bigger drops', included: true },
-        { name: 'VIP-only events', included: true },
-      ],
-    },
-    {
-      name: 'elite',
-      displayName: 'Elite Lounge',
-      subtitle: 'Exclusive Access',
-      price: '$55',
-      period: '/mo',
-      features: [
-        { name: 'All access', included: true },
-        { name: 'Monthly newsletter', included: true },
-        { name: 'Exclusive experience', included: true },
-        { name: 'Exclusive discounts', included: true },
-        { name: 'Priority support', included: true },
-        { name: 'VIP-only events', included: true },
-      ],
-    },
-  ];
-
-  useEffect(() => {
-    if (loading) return;
-
-    // Update tiers with current pricing from fetched plans
-    plans.forEach((plan) => {
-      const tierIndex = tiers.findIndex((t) => t.name === plan.slug);
-      if (tierIndex !== -1) {
-        tiers[tierIndex].price = `$${plan.price_monthly}`;
-      }
-    });
   }, [plans]);
+
+  return (
+    <>
+      <Helmet>
+        <title>Upgrade Membership | Members Only</title>
+        <meta
+          name="description"
+          content="Join our membership community. Choose from Fan Club, VIP Lounge, or Elite Lounge. Start your 14-day free trial today!"
+        />
+      </Helmet>
 
       <div className="min-h-screen bg-background pt-24 pb-16">
         <Header />
@@ -388,14 +312,6 @@ const UpgradePage = () => {
           </div>
         </div>
       </div>
-
-      <Helmet>
-        <title>Upgrade Membership | Members Only</title>
-        <meta
-          name="description"
-          content="Join our membership community. Choose from Fan Club, VIP Lounge, or Elite Lounge. Start your 14-day free trial today!"
-        />
-      </Helmet>
     </>
   );
 };

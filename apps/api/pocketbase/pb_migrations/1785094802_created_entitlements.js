@@ -117,6 +117,10 @@ migrate((app) => {
       'CREATE INDEX idx_entitlements_active ON entitlements (active)',
       'CREATE INDEX idx_entitlements_rank ON entitlements (max_rank)',
     ],
+    id: 'pbc_entitlements_001',
+    name: 'entitlements',
+    system: false,
+    type: 'base',
   });
 
   return app.save(collection);

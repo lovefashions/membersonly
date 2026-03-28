@@ -71,7 +71,7 @@ export async function createPayPalSubscription({ plan_id, email, custom_id }) {
     if (!response.ok) {
       const error = await response.json();
       logger.error('PayPal subscription creation failed:', error);
-      return { success: false, error });
+      return { success: false, error };
     }
 
     const data = await response.json();
