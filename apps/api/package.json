@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "node src/main.js",
+    "build": "npm install --prefix web && npm run build --prefix web",
     "start": "node src/main.js",
     "lint": "eslint . --quiet"
   },
